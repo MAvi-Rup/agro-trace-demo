@@ -12,6 +12,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import CollapsibleSidepanel from './Components/Dashboard/AdminDashboard';
+import AdminHome from './Components/Dashboard/AdminHome';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       
       <Routes>
         <Route path='/dashboard' element={<RequireAuth><AdminDashboard /></RequireAuth> }>
+        <Route index element={<AdminHome />}></Route>
         <Route path='add-farmers' element={<Registration />}></Route>
         <Route path='tp-permit' element={<TransportPermit />}></Route>
         </Route>

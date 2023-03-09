@@ -1,0 +1,15 @@
+.admin-home {
+    margin: 50px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .col-4 {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    padding: 10px;
+  }
+  

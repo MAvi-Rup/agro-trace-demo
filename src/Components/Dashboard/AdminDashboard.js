@@ -122,7 +122,7 @@ const AdminDashboard = () => {
         <Toolbar />
         <Container maxWidth="lg">
           <Typography variant="h3" component="h1" align="center" gutterBottom>
-            Welcome to the Admin Dashboard
+            Welcome to the Admin Dashboard 
           </Typography>
           <Outlet />
         </Container>

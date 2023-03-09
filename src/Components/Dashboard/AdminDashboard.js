@@ -25,6 +25,7 @@ import {
 } from "@material-ui/icons";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from './../../firebase.init';
+import { toast } from "react-toastify";
 
 const drawerWidth = 250;
 
@@ -40,6 +41,7 @@ const AdminDashboard = () => {
   const logout = () => {
     signOut(auth);
     navigate('/login')
+    toast("Logout Successfully")
   };
 
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(true);
@@ -79,7 +81,7 @@ const AdminDashboard = () => {
               <ListItemIcon>
                 <ListIcon />
               </ListItemIcon>
-              <ListItemText primary="All Employee" />
+              <ListItemText primary="All Farmers" />
             </ListItem>
             <ListItem button component={Link} to="add-farmers">
               <ListItemIcon>

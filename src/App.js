@@ -9,6 +9,9 @@ import AdminDashboard from './Components/Dashboard/AdminDashboard';
 import Signup from './Components/Login/Signup';
 import auth from './firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import CollapsibleSidepanel from './Components/Dashboard/AdminDashboard';
 
 
 function App() {
@@ -26,6 +29,7 @@ function App() {
         <Route path='/' element={<Signup />}></Route>
      
       </Routes>
+      <ToastContainer/>
     </>
   );
 }

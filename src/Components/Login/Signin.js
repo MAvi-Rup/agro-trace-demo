@@ -11,6 +11,8 @@ import {
     Typography
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Loading from '../Others/Loading';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -67,6 +69,13 @@ function Signin() {
         navigate('/dashboard');
     }
 
+    if(loading){
+        return <Loading />
+    }
+    if(error){
+        toast(error)
+    }
+
     return (
         <Container maxWidth="sm" className={classes.root}>
             <Card className={classes.card}>
@@ -86,6 +95,7 @@ function Signin() {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        type='email'
                     />
                     <TextField
                         inputRef={passRef}

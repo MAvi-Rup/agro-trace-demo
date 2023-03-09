@@ -10,8 +10,10 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
+import Loading from '../Others/Loading';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,27 +49,44 @@ const Signup = () => {
   let from = location.state?.from?.pathname || "/";
   const [
     createUserWithEmailAndPassword,
-    user,
     loading,
+    user,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
+  // const [user] = useAuthState(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const emailRef = useRef('');
   const nameRef = useRef('');
   const passRef = useRef('');
   const navigate = useNavigate();
 
+  if(error){
+    toast.warn('Error Input')
+    console.log(error)
+  }
   const formSubmit = async (e) => {
     e.preventDefault();
     const name = nameRef.current.value;
     const email = emailRef.current.value;
     const password = passRef.current.value;
     await createUserWithEmailAndPassword(email, password);
+    
+    await navigate('/dashboard')
+    toast(`Signup Suceesfully ${name}`)
+    
+    
     await updateProfile({ displayName: name });
-    if (user) {
-      navigate('/dashboard');
-    }
+    
   }
+
+  if (loading || updating ) {
+    return <Loading />
+  }
+
+
+  
+
+  
 
   return (
     <Container maxWidth="sm" className={classes.root}>
@@ -98,6 +117,7 @@ const Signup = () => {
             label="Email Address"
             name="email"
             autoComplete="email"
+            type='email'
           />
           <TextField
             inputRef={passRef}

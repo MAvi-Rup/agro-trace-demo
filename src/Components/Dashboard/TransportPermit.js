@@ -36,7 +36,7 @@ const TransportPermit = () => {
   return (
     <div className="form-container">
       <h1>Issue Transport Permit</h1>
-      <form ref={formRef}>
+      <form ref={formRef} style={{margin:'25px'}}>
         <label>
           Farmer Name:
           <input type="text" onChange={(e) => setFarmerName(e.target.value)} />
@@ -64,7 +64,7 @@ const TransportPermit = () => {
               Print Permit
             </button>
             <div id="permit-details">
-              <div ref={qrCodeRef}>
+              <div ref={qrCodeRef} style={{padding:'30px'}}>
                 <h2>Tobacco Transport Permit</h2>
                 <h2>Farmers Name: {farmerName}</h2>
                 <p>Permit Number: {permitNumber}</p>

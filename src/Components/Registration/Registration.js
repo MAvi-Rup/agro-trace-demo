@@ -4,6 +4,8 @@ import {
     TextField, FormControl, InputLabel, Select, MenuItem, Button, Grid, makeStyles, FormHelperText,createTheme, ThemeProvider
 } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
@@ -34,10 +36,10 @@ const Registration = () => {
     };
 
 
-    const handleRegisterClick = () => {
+    const handleRegisterClick = async () => {
         const data = {
-            registrationType,
-            dateOfEntry,
+            user:registrationType,
+            date:dateOfEntry,
             farmersName: farmersNameRef.current.value,
             nid: nidRef.current.value,
             phone: phoneRef.current.value,
@@ -45,8 +47,15 @@ const Registration = () => {
             extensionCenter: extensionCenterRef.current.value,
             villageName: villageNameRef.current.value,
         };
-        console.log(data);
-        formRef.current.reset();
+        try {
+            const response = await axios.post('http://localhost:5001/add-farmers', data);
+            console.log(response.data);
+            formRef.current.reset();
+            toast.success('Registration Successful!');
+        } catch (error) {
+            console.error(error);
+            toast.error('Registration failed!');
+        }
     };
 
     const theme = createTheme({

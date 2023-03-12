@@ -71,17 +71,17 @@ const AdminDashboard = () => {
         <Toolbar />
         <Box sx={{ overflow: "auto" }}>
           <List>
-            <ListItem button component={Link} to="/">
+            <ListItem button component={Link} to="/dashboard">
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem button component={Link} to="add-farmers">
+            <ListItem button component={Link} to="all-user">
               <ListItemIcon>
                 <ListIcon />
               </ListItemIcon>
-              <ListItemText primary="All Farmers" />
+              <ListItemText primary="Users" />
             </ListItem>
             <ListItem button component={Link} to="add-farmers">
               <ListItemIcon>

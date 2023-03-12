@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import CollapsibleSidepanel from './Components/Dashboard/AdminDashboard';
 import AdminHome from './Components/Dashboard/AdminHome';
+import AllUser from './Components/Dashboard/AllUser';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route index element={<AdminHome />}></Route>
         <Route path='add-farmers' element={<Registration />}></Route>
         <Route path='tp-permit' element={<TransportPermit />}></Route>
+        <Route path='all-user' element={<AllUser />}></Route>
         </Route>
         <Route path='/login' element={<Signin />}></Route>
         <Route path='/' element={<Signup />}></Route>

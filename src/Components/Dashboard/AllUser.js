@@ -1,7 +1,7 @@
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -24,6 +24,8 @@ function AllUser() {
   const classes = useStyles();
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deletingUserId, setDeletingUserId] = useState(null);
 
   useEffect(() => {
     async function getUsers() {
@@ -37,13 +39,20 @@ function AllUser() {
     getUsers();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
+    setDeletingUserId(id);
+    setDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8000/farmers/${id}`);
-      setUsers(users.filter((user) => user.id !== id));
+      await axios.delete(`http://localhost:5001/delete-farmer/${deletingUserId}`);
+      setUsers(users.filter((user) => user._id !== deletingUserId));
     } catch (error) {
       console.error(error);
     }
+    setDeletingUserId(null);
+    setDeleteDialogOpen(false);
   };
 
   const handleSearch = (event) => {
@@ -102,10 +111,9 @@ function AllUser() {
                   </Button>
                 </TableCell>
                 <TableCell>
-                  <Button
+                  <Button onClick={() => handleDelete(user.id)}
                     variant="contained"
                     color="secondary"
-                    onClick={() => handleDelete(user.id)}
                   >
                     Delete
                   </Button>
@@ -115,8 +123,36 @@ function AllUser() {
           </TableBody>
         </Table>
       </TableContainer>
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure you want to delete this user?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            This action cannot be undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteDialogOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={confirmDelete} color="secondary" autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
 
 export default AllUser;
+
+
+
+
+

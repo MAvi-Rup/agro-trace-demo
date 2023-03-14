@@ -1,6 +1,7 @@
 .admin-home {
-    margin: 50px;
-    margin-left: 200px;
+   
+    margin-left: 100px;
+    margin-bottom: 50px;
   }
   
   .row {
@@ -9,8 +10,16 @@
   }
   
   .col-4 {
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
+    flex: 0 0 30.33%;
+    max-width: 30.33%;
     padding: 10px;
+    margin-bottom: 20px;
   }
   
+  .col-8{
+    flex: 0 0 45%;
+    max-width: 45%;
+    padding-left: 10px;
+    margin-bottom: 20px;
+
+  }

@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import CollapsibleSidepanel from './Components/Dashboard/AdminDashboard';
 import AdminHome from './Components/Dashboard/AdminHome';
 import AllUser from './Components/Dashboard/AllUser';
+import EmployeeEdit from './Components/Dashboard/EmployeeEdit';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='add-farmers' element={<Registration />}></Route>
         <Route path='tp-permit' element={<TransportPermit />}></Route>
         <Route path='all-user' element={<AllUser />}></Route>
+        <Route path='all-user/:id' element={<EmployeeEdit />}></Route>
         </Route>
         <Route path='/login' element={<Signin />}></Route>
         <Route path='/' element={<Signup />}></Route>

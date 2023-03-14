@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -62,6 +62,7 @@ function AllUser() {
   const filteredUsers = users.filter((user) =>
     user.phone.includes(searchQuery)
   );
+  const navigate = useNavigate()
 
   return (
     <div style={{ marginLeft: "80px" }}>
@@ -103,15 +104,16 @@ function AllUser() {
                 <TableCell>
                   <Button
                     variant="contained"
-                    component={Link}
-                    to={`/edit/${user.id}`}
+                    
+                    onClick={()=>navigate(`${user._id}`)}
+                    
                     color="primary"
                   >
                     Edit
                   </Button>
                 </TableCell>
                 <TableCell>
-                  <Button onClick={() => handleDelete(user.id)}
+                  <Button onClick={() => handleDelete(user._id)}
                     variant="contained"
                     color="secondary"
                   >

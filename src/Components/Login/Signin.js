@@ -63,17 +63,24 @@ function Signin() {
         const email = emailRef.current.value;
         const password = passRef.current.value;
         await signInWithEmailAndPassword(email, password);
+        toast(`Signup Suceesfully ${user.displayName}`)
     };
+
+    const googleSignIn =async ()=>{
+        signInWithGoogle()
+    }
 
     if (user || gUser) {
         navigate('/dashboard');
+        toast(`Signup Successfully`)
     }
 
-    if(loading){
+    if(loading || gLoading){
         return <Loading />
     }
-    if(error){
-        toast(error)
+    if(error ||gError){
+        toast.danger('Something Wrong Please Try Again !')
+        
     }
 
     return (
@@ -122,7 +129,7 @@ function Signin() {
                         fullWidth
                         variant="contained"
                         color="secondary"
-                        onClick={() => signInWithGoogle()}
+                        onClick={googleSignIn}
                         className={classes.submit}
                     >
                         Sign In with Google

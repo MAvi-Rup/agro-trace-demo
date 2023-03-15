@@ -27,7 +27,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from './../../firebase.init';
 import { toast } from "react-toastify";
 
-const drawerWidth = 250;
+const drawerWidth = 150;
 
 const AdminDashboard = () => {
   const navigate = useNavigate();

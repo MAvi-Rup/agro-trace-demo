@@ -104,8 +104,8 @@ const AdminDashboard = () => {
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                <ListItem button component={Link} to="/admin/sales">
-                  <ListItemText primary="Sales Report" />
+                <ListItem button component={Link} to="production">
+                  <ListItemText primary="Production Rate" />
                 </ListItem>
                 <ListItem button component={Link} to="/admin/gross-revenue">
                   <ListItemText primary="Gross Revenue" />

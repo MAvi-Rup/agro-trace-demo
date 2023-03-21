@@ -26,6 +26,8 @@ import {
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import auth from './../../firebase.init';
 import { toast } from "react-toastify";
+import { AddShoppingCart as ShoppingCartIcon } from "@material-ui/icons";
+
 
 const drawerWidth = 150;
 
@@ -54,11 +56,11 @@ const AdminDashboard = () => {
     <Box sx={{ display: "flex" }}>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          
+
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Admin Dashboard
           </Typography>
-          <Button color="inherit" onClick={logout} style={{marginLeft:'auto'}}>
+          <Button color="inherit" onClick={logout} style={{ marginLeft: 'auto' }}>
             Logout
           </Button>
 
@@ -95,6 +97,12 @@ const AdminDashboard = () => {
               </ListItemIcon>
               <ListItemText primary="Transport Permit" />
             </ListItem>
+            <ListItem button component={Link} to="purchase-bale">
+              <ListItemIcon>
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Purchase Bale" />
+            </ListItem>
             <ListItem button onClick={handleReportsClick}>
               <ListItemIcon>
                 <ShowChartIcon />
@@ -122,7 +130,7 @@ const AdminDashboard = () => {
         <Toolbar />
         <Container maxWidth="lg">
           <Typography variant="h3" component="h1" align="center" gutterBottom>
-            Welcome to the Admin Dashboard 
+            Welcome to the Admin Dashboard
           </Typography>
           <Outlet />
         </Container>

@@ -1,0 +1,63 @@
+.purchase-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .purchase-form label {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .purchase-form input,
+  .purchase-form .MuiFormControl-root {
+    width: 100%;
+  }
+  
+  .purchase-form button {
+    margin-top: 1rem;
+  }
+  
+  .purchase-form button:hover {
+    transform: scale(1.05);
+    background-color: #1E88E5;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .purchase-form button:disabled {
+    background-color: lightgray;
+    color: gray;
+    cursor: not-allowed;
+  }
+  
+  .purchase-form .MuiAutocomplete-root {
+    width: 100%;
+  }
+  
+  .purchase-form .MuiAutocomplete-inputRoot {
+    font-size: 1.2rem;
+  }
+  
+  .purchase-form .MuiInputLabel-root {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .purchase-form .MuiFormHelperText-root {
+    font-size: 1rem;
+  }
+  
+  .purchase-form .MuiFormHelperText-contained {
+    margin-left: 0;
+  }
+  
+  .purchase-form .MuiFormControl-root {
+    margin-bottom: 1rem;
+  }
+  
+  .purchase-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #1E88E5;
+  }
+  

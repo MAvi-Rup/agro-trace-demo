@@ -4,6 +4,10 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import useFarmers from "../../Hooks/useFarmers";
+import { Link } from "react-router-dom";
+import useTransportPermit from "../../Hooks/useTransportPermit";
+//import getTransportPermit from "../../Hooks/useTransportPermit";
 
 const Widget = ({ type }) => {
   let data;
@@ -11,6 +15,8 @@ const Widget = ({ type }) => {
   //temporary
   const amount = 100;
   const diff = 20;
+  const [farmers, setFarmers] = useFarmers();
+  const [transportPermits, setTransportPermit] = useTransportPermit();
 
   switch (type) {
     case "stock":
@@ -45,22 +51,24 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "users":
-      data = {
-        title: "USERS",
-        isMoney: false,
-        link: "See all users",
-        icon: (
-          <PersonOutlinedIcon
-            className="icon"
-            style={{
-              color: "crimson",
-              backgroundColor: "rgba(255, 0, 0, 0.2)",
-            }}
-          />
-        ),
-      };
-      break;
+      case "users":
+        data = {
+          title: "USERS",
+          isMoney: false,
+          link: <Link to="all-user">See all users</Link>, // Add an anchor tag with the link
+          icon: (
+            <PersonOutlinedIcon
+              className="icon"
+              style={{
+                color: "crimson",
+                backgroundColor: "rgba(255, 0, 0, 0.2)",
+              }}
+            />
+          ),
+          counterValue: farmers.length,
+        };
+        break;
+      
     default:
       data = {
         title: "WIDGET",
@@ -84,7 +92,8 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {/* Use the counterValue property when available */}
+          {data.isMoney && "$"} {data.counterValue || amount}
         </span>
         <span className="link">{data.link}</span>
       </div>
